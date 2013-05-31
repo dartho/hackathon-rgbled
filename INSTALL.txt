@@ -1,0 +1,53 @@
+**********************************************
+ Raspberry Pi - RGBLED setup and installation
+**********************************************
+
+
+Webserver setup
+----------------
+Install Lighttpd (or preferred webserver) with cgi support
+	
+	sudo apt-get install lighttpd
+
+
+Create the cgi-bin directory and set permissions
+
+	sudo mkdir -p /var/www/cgi-bin
+	sudo chmod 755 /var/www/cgi-bin
+
+Enable CGI for lighttpd
+
+	sudo cp <project files>/10-cgi.conf /etc/lighttpd/conf-enabled/
+
+***The initial setup of this project (done very quickly) required that the webserver be run as root so that the python
+	script could access the GPIO.  Normally this is a very BAD idea, especially if the Pi is accessible from the internet.
+	These instructions will be updated once a better solution is found.  Use caution!
+
+
+
+RPi GPIO setup
+---------------
+Install the RPi GPIO libraries
+
+	sudo apt-get update
+	sudo apt-get install python-dev
+	sudo apt-get install python-rpi.gpio
+
+
+
+Deploy code
+------------
+Setup python script which drives the GPIO
+
+	sudo mkdir -p /home/pi/python_code
+	sudo cp <project files>/rgbled.py /home/pi/python_code
+
+Setup perl script which acts a proxy to the python script 
+
+	sudo cp <project files>/rgbled.pl /var/www/cgi-bin
+	sudo chmod 755 /var/www/cgi-bin/rgbled.pl
+
+Webpage setup
+
+	sudo cp -r <project files>/rgbled /var/www
+

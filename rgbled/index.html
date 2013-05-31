@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>Switcheroo</title>
+<style type="text/css">
+h1 {text-align: center}
+
+.color {padding: 0; margin: 0;}
+tr {text-align: center;}
+input {height: 24pt; width: 120px; font-weight: bold; font-size: 14pt;}
+</style>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+</head>
+<body>
+<div>
+
+<script>
+function setColor(r, g, b){
+$.ajax({
+  url: '../cgi-bin/rgbled.pl?r='+r+'&g='+g+'&b='+b,
+  success:function(data){
+    //do nothing
+  }
+});
+}
+</script>
+
+<table width="100%" height="100%">
+<tr><td colspan="2" height="140px">
+<img src="Switcheroo-logo392x180.png"/>
+</td>
+</tr>
+<tr>
+<td colspan="2" class="color white">
+<input type="button" onclick="setColor(1, 1, 1)" value="White">
+</td>
+</tr>
+
+<tr>
+<td class="color red">
+<input type="button" onclick="setColor(1, 0, 0)" value="Red">
+</td>
+
+<td class="color green">
+<input type="button" onclick="setColor(0, 1, 0)" value="Green">
+</td>
+</tr>
+
+<tr>
+<td class="color blue">
+<input type="button" onclick="setColor(0, 0, 1)" value="Blue">
+</td>
+
+<td class="color yellow">
+<input type="button" onclick="setColor(1, 1, 0)" value="Yellow">
+</td>
+</tr>
+
+<tr>
+<td class="color magenta">
+<input type="button" onclick="setColor(1, 0, 1)" value="Magenta">
+</td>
+<td class="color bluegreen">
+<input type="button" onclick="setColor(0, 1, 1)" value="Cyan">
+</td>
+</tr>
+
+<tr>
+<td colspan="2" class="color black">
+<input type="button" onclick="setColor(0, 0, 0)" value="Off">
+</td>
+</tr>
+<tr><td colspan="2" height="140px"><img src="AOL-logo-color_320x140.png"/><img src="Digital-harbor-logo_140x140.png"/></td></tr>
+</table>
+
+
+</div>
+
+</body>
+</html>
